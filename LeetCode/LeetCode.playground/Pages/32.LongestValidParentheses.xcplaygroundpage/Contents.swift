@@ -31,5 +31,36 @@ func longestValidParentheses(_ s: String) -> Int {
     return maxLength
 }
 
-longestValidParentheses("(())))((((()))))")
+longestValidParentheses("))(()   )))((((()))))")
 
+
+func longestValidParentheses2(_ s: String) -> Int {
+    var array = Array(s)
+    var maxLength = 0
+    // We start with -1 as a base marker for length calculation.
+    var stack = [-1]
+    
+    for i in 0..<array.count {
+        // store its index in the stack.
+        if array[i] == "(" {
+            stack.append(i)
+        } else {
+            
+            // Current character is ')', so try to match it with the last '('.
+            stack.removeLast()
+            
+            // If stack becomes empty, it means this ')' has no matching '('.
+            // So we set this index as a new base.
+            if stack.isEmpty {
+                stack.append(i)
+            } else {
+                // If stack is not empty, then the top of the stack is the index
+                // before the start of the current valid substring.
+                // So current valid length = current index - top index in stack.
+                let currentLength = i - stack.last!
+                maxLength = max(maxLength, currentLength)
+            }
+        }
+    }
+    return maxLength
+}

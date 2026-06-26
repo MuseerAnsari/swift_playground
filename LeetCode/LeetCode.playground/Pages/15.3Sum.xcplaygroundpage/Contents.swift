@@ -60,3 +60,32 @@ func solution2(_ nums: [Int]) -> [[Int]] {
 }
 
 print(solution2([-1,0,1,2,-1,-4]))
+
+func solution3(_ nums: [Int]) -> [[Int]]  {
+    
+    let nums = nums.sorted()
+    var result = Set<[Int]>()
+    
+    for i in 0..<nums.count {
+        
+        let current = nums[i]
+        var left = i + 1
+        var right = nums.count - 1
+        
+        while left < right {
+            let sum = current + nums[left] + nums[right]
+            if sum == 0 {
+                result.insert([current, nums[left], nums[right]])
+                left += 1
+                right -= 1
+            }
+            else if sum < 0 {
+                left += 1
+            } else {
+                right += 1
+            }
+        }
+    }
+    
+    return Array(result)
+}

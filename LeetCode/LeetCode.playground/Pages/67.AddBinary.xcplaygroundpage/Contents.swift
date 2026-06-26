@@ -13,7 +13,7 @@ func addBinary(_ a: String, _ b: String) -> String {
     var binary2 = Array(b)
     
     let binary1Lenght = binary1.count - 1 // 1
-    let binary2Lenght = binary1.count - 1 // 1
+    let binary2Lenght = binary2.count - 1 // 1
 
     let max = max(binary1Lenght, binary2Lenght)
     var carry = 0
@@ -22,8 +22,8 @@ func addBinary(_ a: String, _ b: String) -> String {
     
     for i in 0...max {
         var sum = carry
-        if i <= binary1Lenght && binary1[binary1Lenght - i] == "1" { sum += 1 }
-        if i <= binary2Lenght && binary2[binary2Lenght - i] == "1" { sum += 1 }
+        if i <= binary1Lenght && (binary1[binary1Lenght - i] == "1") { sum += 1 }
+        if i <= binary2Lenght && (binary2[binary2Lenght - i] == "1") { sum += 1 }
         result.append(sum % 2 > 0 ? "1" : "0")
         carry = sum / 2
     }

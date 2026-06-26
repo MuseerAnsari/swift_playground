@@ -38,3 +38,27 @@ func medianOfSortedArraySolution2(_ a1: [Int], _ a2: [Int]) -> Double {
 }
 
 medianOfSortedArraySolution2([4,5,6,14],[2,12,13])
+
+func medianOfSortedArraySolution3(_ a1: [Int], _ a2: [Int]) -> Double {
+    
+    var (i, j) = (0, 0)
+    var array:[Int] = []
+    
+    while i < a1.count && j < a2.count {
+        if a1[i] < a2[j] {
+            array.append(a1[i])
+            i += 1
+        } else {
+            array.append(a2[j])
+            j += 1
+        }
+    }
+    array.append(contentsOf: a1[i...])
+    array.append(contentsOf: a2[j...])
+
+    let arrayCount = array.count
+    let median = array[(arrayCount - 1) / 2] + array[arrayCount / 2]
+    return Double(median) * 0.5
+}
+
+medianOfSortedArraySolution3([4,5,6,14],[2,12,13])

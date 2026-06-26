@@ -33,10 +33,27 @@ func longestSubstringSoloution2(_ s: String) -> String {
             }
             subString = ""
         }
-        if subString.count > 0 {}
         subString.append(String(char))
     }
     return result
 }
 
 longestSubstringSoloution2("pwwkew")
+
+func longestSubstringSoloution3(_ s: String) -> String {
+    
+    var result = ""
+    var subString = ""
+    
+    for char in s {
+        if subString.contains(where: {$0 == char}) {
+            if subString.count > result.count {
+                result = subString
+                subString = String(char)
+            }
+        } else {
+            subString.append(char)
+        }
+    }
+    return result
+}
