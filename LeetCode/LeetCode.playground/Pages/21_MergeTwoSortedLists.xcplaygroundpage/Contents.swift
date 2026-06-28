@@ -36,3 +36,25 @@ func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
 let node1 = ListNode(2)
 let list = ListNode(1, node1)
 mergeTwoLists(list, nil)
+
+func mergeTwoLists2(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+    
+    var l1 = list1
+    var l2 = list2
+    var list = ListNode(0)
+    var tail: ListNode? = list
+    
+    while l1 != nil && l2 != nil {
+        if l1!.val < l2!.val {
+            tail?.next = l1
+            l1 = l1?.next
+        } else {
+            tail?.next = l2
+            l2 = l2?.next
+        }
+        tail = tail?.next
+    }
+    tail?.next = l1 ?? l2
+    
+    return list.next
+}

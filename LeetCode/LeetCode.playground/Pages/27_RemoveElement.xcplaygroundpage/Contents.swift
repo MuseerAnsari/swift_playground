@@ -9,15 +9,12 @@
  It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-func removeElements(_ nums: inout [Int], val: Int) -> ([Int], Int) {
-    let nonVal = nums.filter({$0 != val})
-    let value = [Int](repeating: val, count: nums.count - nonVal.count)
-    nums = nonVal + value
-    return(nums, nonVal.count)
+func removeElements2(_ nums: inout [Int], val: Int) -> ([Int], Int) {
+    let notEqualToValue = nums.filter({$0 != val})
+    let equalToValue = [Int](repeating: val, count: nums.count - notEqualToValue.count)
+    nums = notEqualToValue + equalToValue
+    return(nums, notEqualToValue.count)
 }
+
 var nums = [0,1,2,2,3,0,4,2]
 removeElements(&nums, val: 2)
-
-
-
-
