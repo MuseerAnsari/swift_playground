@@ -17,4 +17,4 @@ func removeElements2(_ nums: inout [Int], val: Int) -> ([Int], Int) {
 }
 
 var nums = [0,1,2,2,3,0,4,2]
-removeElements(&nums, val: 2)
+removeElements2(&nums, val: 2)
