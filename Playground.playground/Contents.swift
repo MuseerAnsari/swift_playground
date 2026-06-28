@@ -1,35 +1,24 @@
 import UIKit
 
-func isValidSudoku(_ board: [[Character]]) -> Bool {
+// Given stock prices, find the maximum profit you can make with at most two transactions.
+// [12,14,20,12,50,20]
+
+
+func solution(_ nums: [Int]) -> Int {
     
-    var strSet = Set<String>()
+    var profit = 0
     
-    for row in 0..<board.count {
-        for col in 0..<board.count {
-            let value = board[row][col]
-            if value == "." { continue }
-            
-            let rowValues = "\(value) found in row \(row)"
-            let colValues = "\(value) found in col \(col)"
-            let boxValues = "\(value) in box \((row/3)) - \((col/3))"
-            
-            if strSet.contains(rowValues) || strSet.contains(colValues) || strSet.contains(boxValues){
-                return false
-            }
-            strSet.insert(rowValues)
-            strSet.insert(colValues)
-            strSet.insert(boxValues)
+    for i in 0..<nums.count {
+        let current = nums[i]
+        for j in (i + 1)..<nums.count {
+            let currenProfit = nums[j] - current
+            profit = max(profit, currenProfit)
         }
     }
-    return true
+    
+    return profit
 }
 
-isValidSudoku([["5","3",".",".","7",".",".",".","."]
-               ,["6",".",".","1","9","5",".",".","."]
-               ,[".","9","8",".",".",".",".","6","."]
-               ,["8",".",".",".","6",".",".",".","3"]
-               ,["4",".",".","8",".","3",".",".","1"]
-               ,["7",".",".",".","2",".",".",".","6"]
-               ,[".","6",".",".",".",".","2","8","."]
-               ,[".",".",".","4","1","9",".",".","5"]
-               ,[".",".",".",".","8",".",".","7","9"]])
+print(solution([12,14,20,12,50,20]))
+
+
