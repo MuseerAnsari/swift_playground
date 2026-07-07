@@ -44,3 +44,51 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
 }
 
 searchRange([5,7,7,8,8,9,10], 8)
+
+func solution(_ nums: [Int], _ target: Int) -> [Int] {
+
+    func findFirst() -> Int {
+        var left = 0
+        var right = nums.count - 1
+        var ans = -1
+        while left < right {
+            let mid = left + (right - left) / 2
+            let current = nums[mid]
+            if current == target {
+                ans = mid
+                right = mid - 1
+            } else if current < target {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return ans
+    }
+    
+    func findLast() -> Int {
+        var left = 0
+        var right = nums.count - 1
+        var ans = -1
+        
+        while left < right {
+            let mid = left + (right - left) / 2
+            let current = nums[mid]
+            if current == target {
+                ans = mid
+                left = mid + 1
+            } else if current < target {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return ans
+    }
+
+    if findFirst() == -1 { return [-1, -1]}
+    
+    return [findFirst(), findLast()]
+}
+
+solution([5,7,7,8,8,9,10,10], 10)
