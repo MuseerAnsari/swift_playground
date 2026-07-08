@@ -2,9 +2,11 @@
 /*
  Given two binary strings a and b, return their sum as a binary string.
 
- Example 1:
- Input: a = "11000", b = "10"
+ Input: a = "11", b = "1"
  Output: "100"
+ 
+ Input: a = "1010", b = "1011"
+ Output: "10101"
  */
 
 func addBinary(_ a: String, _ b: String) -> String {
@@ -34,4 +36,38 @@ func addBinary(_ a: String, _ b: String) -> String {
     return String(result.reversed())
 }
 
-addBinary("10", "10")
+// addBinary("10", "10")
+
+
+func solution(_ a: String, _ b: String) -> String {
+    
+    let aChars = Array(a)
+    let bChars = Array(b)
+    
+    var i = aChars.count - 1
+    var j = bChars.count - 1
+    var carry = 0
+    var result = ""
+    
+    while i >= 0 || j >= 0 || carry > 0 {
+        
+        var sum = carry
+        
+        if i >= 0 {
+            if aChars[i] == "1" { sum += 1 }
+            i -= 1
+        }
+        
+        if j >= 0 {
+            if bChars[j] == "1" { sum += 1 }
+            j -= 1
+        }
+        carry = sum / 2
+        result = (sum % 2 == 1 ? "1" : "0") + result
+    }
+    
+    return result
+}
+
+
+solution("11", "11")
