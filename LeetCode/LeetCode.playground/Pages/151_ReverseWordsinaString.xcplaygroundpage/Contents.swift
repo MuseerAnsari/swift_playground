@@ -19,36 +19,35 @@ func reverseWords(_ s: String) -> String {
 }
 // reverseWords(" the sky is blue ")
 
-func reverseWords2(_ s: String) -> String {
+func solution(_ s: String) -> String {
     
-    var array: [String] = []
     var word = ""
-    
-    for char in s {
-        guard char.isLetter || char.isNumber || char.isWhitespace else { continue }
+    var wordAray: [String] = []
+    let str = s.trimmingCharacters(in: .whitespacesAndNewlines)
+    for char in str {
         if char != " " {
             word += String(char)
-        } else {
-            if word != "" {
-                array.append(word)
-            }
+        } else if char == " " {
+            wordAray.append(word)
             word = ""
         }
     }
+    wordAray.append(word)
     
-    var reverseArray: [String] = []
-    var i = 0
-    let count = array.count
-    while i < count {
-        reverseArray.append(array[count - i - 1])
-        i += 1
+    var reversedWordArray: [String] = []
+    var count = wordAray.count - 1
+    
+    for word in wordAray {
+        reversedWordArray.append(wordAray[count])
+        count -= 1
     }
     
-    var joinedStr = ""
-    for word in reverseArray {
-        joinedStr += " \(word)"
+    var result = ""
+    for word in reversedWordArray {
+        if word == "" { continue }
+        result += (word + " ")
     }
+    result = result.trimmingCharacters(in: .whitespacesAndNewlines)
     
-    return joinedStr.trimmingCharacters(in: .whitespaces)
+    return result
 }
-reverseWords2(" the sky is   blue ")

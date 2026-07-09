@@ -49,6 +49,18 @@ func getMaximumProfit(_ price: [Int]) -> Int {
 
 getMaximumProfit([10,9,8,7,6,5])
 
+func solution(_ prices:[Int]) -> Int {
+    
+    var maxProfit = 0
+    var minPrice = prices[0]
+    
+    for i in 1..<prices.count {
+        minPrice = min(minPrice, prices[i])
+        let currentProfit = prices[i] - minPrice
+        maxProfit = max(maxProfit, currentProfit)
+    }
+    return maxProfit
+}
 
 
 

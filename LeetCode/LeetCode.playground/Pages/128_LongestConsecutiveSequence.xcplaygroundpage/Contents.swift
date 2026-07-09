@@ -29,11 +29,11 @@ func longestConsecutive(_ nums: [Int]) -> Int {
     return maxLength
 }
 
-longestConsecutive([0,3,7,2,5,8,4,6,0,1])
+//longestConsecutive([0,3,7,2,5,8,4,6,0,1])
 
 func longestConsecutive2(_ nums: [Int]) -> Int {
     
-    guard !nums.isEmpty else { return 0}
+    guard !nums.isEmpty else { return 0 }
     
     let sorted = nums.sorted()
     var currentMaxLenght = 1
@@ -51,4 +51,26 @@ func longestConsecutive2(_ nums: [Int]) -> Int {
     return result
 }
 
-longestConsecutive2([1,0,1,2])
+//longestConsecutive2([1,0,1,2])
+
+func solution(_ nums: [Int]) -> Int {
+    
+    guard nums.isEmpty else { return 0 }
+    let sortedNums = nums.sorted()
+    var prevNumber = sortedNums[0]
+    var maxLength = 1
+    var tempMaxLength = 1
+    
+    for num in sortedNums.dropFirst() {
+        if prevNumber + 1 == num {
+            tempMaxLength += 1
+        } else if num != prevNumber {
+            tempMaxLength = 1
+        }
+        maxLength = max(maxLength, tempMaxLength)
+        prevNumber = num
+    }
+    return maxLength
+}
+
+solution([1,0,1,2])

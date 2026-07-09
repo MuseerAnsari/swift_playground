@@ -14,3 +14,19 @@ func isValidePalindrome(_ s: String) -> Bool {
     let revesreStr = String(str.reversed())
     return str == revesreStr
 }
+
+func solution(_ s: String) -> Bool {
+    
+    let str = s.filter({$0.isLetter || $0.isNumber}).lowercased()
+    var aOs = Array(str)
+    var left = 0
+    var right = aOs.count - 1
+    
+    while left < right {
+        if aOs[left] != aOs[right] { return false }
+        left += 1
+        right -= 1
+    }
+    return true
+}
+
