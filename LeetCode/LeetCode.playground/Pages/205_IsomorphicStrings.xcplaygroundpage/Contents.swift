@@ -42,4 +42,30 @@ func isIsomorphic(_ s: String, _ t: String) -> Bool {
     return true
 }
 
-isIsomorphic("agg", "add")
+isIsomorphic("agg", "bdd")
+
+
+func solution(_ s: String, _ t: String) -> Bool {
+    
+    guard s.count == t.count else { return false }
+    
+    let sChars = Array(s)
+    let tChars = Array(t)
+    
+    var mapST = [Character : Character]()
+    var mapTS = [Character : Character]()
+    
+    for i in 0..<sChars.count {
+        let sChar = sChars[i]
+        let tChar = tChars[i]
+        
+        if let mapped = mapST[sChar], mapped != tChar { return false }
+        if let mapped = mapTS[tChar], mapped != sChar { return false }
+        
+        mapST[sChar] = tChar
+        mapTS[tChar] = sChar
+    }
+    
+    return true
+}
+
