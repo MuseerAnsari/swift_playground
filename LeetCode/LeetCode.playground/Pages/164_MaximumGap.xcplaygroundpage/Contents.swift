@@ -24,3 +24,16 @@ func maximumGap(_ nums: [Int]) -> Int {
     return maxDifference
 }
 maximumGap([1,3,6,9])
+
+func solution(_ nums: [Int]) -> Int {
+    
+    guard nums.count > 1 else { return 0 }
+    var sortedNums = nums.sorted()
+    var maxDiff = 0
+    for i in 1..<sortedNums.count {
+        let diff = sortedNums[i] - sortedNums[i - 1]
+        maxDiff = max(maxDiff, diff)
+    }
+    return maxDiff
+}
+

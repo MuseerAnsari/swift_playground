@@ -46,3 +46,17 @@ func twoSum2(_ numbers: [Int], _ target: Int) -> [Int] {
 }
 
 //twoSum2([2,3,3,4], 6)
+
+func solution(_ nums: [Int], _ target: Int) -> [Int] {
+    
+    var map = [Int: Int]()
+    for i in 0..<nums.count {
+        let compliment = target - nums[i]
+        if let index = map[compliment] {
+            return [(index + 1), (i + 1)]
+        }
+        map[nums[i]] = i
+    }
+    return []
+}
+

@@ -30,19 +30,18 @@ func findPeakElement(_ nums: [Int]) -> Int {
 
 findPeakElement([1,2,3,1])
 
-func findPeakElement2(_ nums: [Int]) -> Int {
-    
-    var start = 0
-    var end = nums.count - 1
-    while start < end {
-        let mid = start + (end - start) / 2
-        if nums[mid] < nums[mid+1] {
-            start = mid + 1
+func solution(_ nums: [Int]) -> Int {
+    var left = 0
+    var right = nums.count - 1
+    while left < right {
+        let mid = left + (right - left) / 2
+        if nums[mid] < nums[mid + 1] {
+            left = mid + 1
         } else {
-            end = mid
+            right = mid
         }
     }
-    return start
+    return nums[left]
 }
 
-findPeakElement2([1,2,3,1])
+solution([1,2,3,1])
