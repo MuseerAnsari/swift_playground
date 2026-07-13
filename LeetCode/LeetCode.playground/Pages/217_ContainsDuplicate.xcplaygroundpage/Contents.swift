@@ -25,3 +25,13 @@ func containsDuplicate2(_ nums: [Int]) -> Bool {
     let set = Set(nums)
     return set.count != nums.count
 }
+
+func solution(_ nums: [Int]) -> Bool {
+    var map = [Int: Int]()
+    for num in nums {
+        if map[num] != nil { return true }
+        map[num] = num
+    }
+    return false
+}
+

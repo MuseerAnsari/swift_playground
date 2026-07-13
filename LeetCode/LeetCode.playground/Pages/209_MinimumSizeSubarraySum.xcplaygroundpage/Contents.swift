@@ -28,3 +28,27 @@ func minSubArrayLen(_ target: Int, _ nums: [Int]) -> Int {
 }
 
 minSubArrayLen(7, [2,3,1,2,4,3])
+
+func solution(_ target: Int, _ nums: [Int]) -> Int {
+    // Store the minimum window length found so far
+    var minWindow = Int.max
+    // Left pointer of the sliding window
+    var left = 0
+    // Current sum of the window
+    var sum = 0
+    // Expand the window by moving the right pointer
+    for right in 0..<nums.count {
+        sum += nums[right]
+        // While the current window is valid
+        while sum >= target {
+            let currentMinWindow = right - left + 1
+            // Update the minimum length
+            minWindow = min(minWindow, currentMinWindow)
+            // Remove the leftmost element from the window sum
+            sum -= nums[left]
+            // Shrink the window from the left
+            left += 1
+        }
+    }
+    return minWindow == Int.max ? 0 : minWindow
+}
