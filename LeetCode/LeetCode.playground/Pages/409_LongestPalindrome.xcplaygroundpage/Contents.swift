@@ -22,3 +22,21 @@ func longestPalindrome(_ s: String) -> Int {
     result += result < s.count ? 1 : 0
     return result
 }
+
+func solution(_ s: String) -> Int {
+    var result = 0
+    var mapped = [Character: Int]()
+    
+    for char in s {
+        mapped[char, default: 0] += 1
+    }
+    
+    for dic in mapped {
+        result += (dic.value / 2) * 2
+    }
+    result += (result < s.count) ? 0 : 1
+    
+    return result
+}
+
+

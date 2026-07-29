@@ -38,3 +38,14 @@ func firstUniqChar2(_ s: String) -> Int {
     }
     return -1
 }
+
+func selution(_ s: String) -> Int {
+    var map = [Character: Int]()
+    for char in s {
+        map[char, default: 0] += 1
+    }
+    for (index, char) in s.enumerated() {
+        if let mapped = map[char], mapped == 1 { return index }
+    }
+    return -1
+}
