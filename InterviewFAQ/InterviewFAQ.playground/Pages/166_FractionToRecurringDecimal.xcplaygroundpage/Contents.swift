@@ -52,11 +52,10 @@ func fractionToDecimal(_ numerator: Int, _ denominator: Int) -> String {
     var index = 0
     
     while num != 0 {
-        print(result)
-        if let previousIndex = reminderIndex[num] {
+        if let prevIndex = reminderIndex[num] {
             // repeating part found
-            let nonRepeating = String(fractionalDigit.prefix(previousIndex))
-            let repeating = String(fractionalDigit.suffix(from: previousIndex))
+            let nonRepeating = String(fractionalDigit.prefix(prevIndex))
+            let repeating = String(fractionalDigit.suffix(from: prevIndex))
             result += nonRepeating + "(" + repeating + ")"
             return result
         }
@@ -73,4 +72,4 @@ func fractionToDecimal(_ numerator: Int, _ denominator: Int) -> String {
     return result
 }
 
-print(fractionToDecimal(1, 3))
+print(fractionToDecimal(5, 2))
