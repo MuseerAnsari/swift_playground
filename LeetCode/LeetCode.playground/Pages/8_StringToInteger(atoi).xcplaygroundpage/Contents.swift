@@ -20,8 +20,7 @@ func myAtoi(_ s: String) -> Int {
     var sign = 1
     var result = 0
     
-    guard let first = chars.first
-    else { return 0 }
+    guard let first = chars.first else { return 0 }
     if first == "-" {
         sign = -1
         chars.dropFirst()

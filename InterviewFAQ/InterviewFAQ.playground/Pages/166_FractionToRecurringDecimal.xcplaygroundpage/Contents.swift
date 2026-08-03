@@ -21,7 +21,7 @@
 
 func fractionToDecimal(_ numerator: Int, _ denominator: Int) -> String {
     
-    guard denominator > 0 else { return "0" }
+    guard denominator != 0 else { return "0" }
     
     var result = ""
     // Determine Sign
@@ -72,4 +72,4 @@ func fractionToDecimal(_ numerator: Int, _ denominator: Int) -> String {
     return result
 }
 
-print(fractionToDecimal(5, 2))
+print(fractionToDecimal(20, 3))
