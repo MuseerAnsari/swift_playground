@@ -25,9 +25,8 @@ survives.
  
 */
 
-
 func josephusIterative(_ n: Int, _ k: Int) -> Int {
-    var result = 0  
+    var result = 0
     
     // Build up from 2 people to n people
     for i in 2...n {
@@ -39,10 +38,7 @@ func josephusIterative(_ n: Int, _ k: Int) -> Int {
 
 //print(josephusIterative(5, 2))  // Output: 3
 
-print(josephusIterative(7, 3))  // Output: 4
-
-
-
+//print(josephusIterative(7, 3))  // Output: 4
 
 func josephus(_ n: Int, _ k: Int) -> Int {
     // Base case
