@@ -1,37 +1,45 @@
 import Foundation
 
-func isAnagram(_ s: String, _ t: String) -> Bool {
+// cbaebabacd "abc"
+
+func findAnagramInString(_ s: String, t: String) -> [Int] {
+    guard s.count > t.count else { return [] }
     
-    guard s.count == t.count else { return false }
-    
-    var mapS: [Character: Int] = [:]
-    for char in s {
-        mapS[char, default: 0] += 1
+    var anagramMap: [Character: Int] = [:]
+    for char in t {
+        anagramMap[char, default: 0] += 1
     }
     
-    for char in t {
+    let tCount = t.count
+    let sCount = s.count
+    var windowMap: [Character: Int] = [:]
+    var chars = Array(s)
+    var result: [Int] = []
+    
+    for i in 0..<sCount {
+        windowMap[chars[i], default: 0] += 1
         
-        if let count = mapS[char] {
-            if count > 1 {
-                mapS[char]! -= 1
-            } else {
-                mapS[char] = nil
+        if i >= tCount {
+            let firstChar = chars[i - tCount]
+            windowMap[firstChar]! -= 1
+            if windowMap[firstChar] == 0 {
+                windowMap[firstChar] = nil
             }
         }
         
+        if anagramMap == windowMap {
+            result.append(i - (tCount - 1))
+        }
+        
     }
-    
-    
-//    var mapT: [Character: Int] = [:]
-//    for char in t {
-//        mapT[char, default: 0] += 1
-//    }
-//    
-//    for dic in mapS {
-//        let value = dic.value
-//        if value != mapT[dic.key] { return false }
-//    }
-
-    return mapS.isEmpty
-    
+    return result
 }
+
+
+print(findAnagramInString("cbaebabacd", t: "abc"))
+
+
+
+
+
+

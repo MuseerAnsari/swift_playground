@@ -5,7 +5,7 @@
  You must write an algorithm that runs in O(n) time and without using the division operation.
 
  Example 1:
- Input: nums = [1,2,3,4]
+ Input: nums = [1,2,3,4] // [4,3,2,1]
  Output: [24,12,8,6]
  */
 
