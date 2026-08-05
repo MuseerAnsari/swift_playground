@@ -1,45 +1,17 @@
 import Foundation
 
-// cbaebabacd "abc"
-
-func findAnagramInString(_ s: String, t: String) -> [Int] {
-    guard s.count > t.count else { return [] }
+func longestSubstring(_ s: String) -> String {
     
-    var anagramMap: [Character: Int] = [:]
-    for char in t {
-        anagramMap[char, default: 0] += 1
-    }
+    let chars = Array(s)
+    var result: [Character] = []
     
-    let tCount = t.count
-    let sCount = s.count
-    var windowMap: [Character: Int] = [:]
-    var chars = Array(s)
-    var result: [Int] = []
-    
-    for i in 0..<sCount {
-        windowMap[chars[i], default: 0] += 1
-        
-        if i >= tCount {
-            let firstChar = chars[i - tCount]
-            windowMap[firstChar]! -= 1
-            if windowMap[firstChar] == 0 {
-                windowMap[firstChar] = nil
-            }
+    for i in 0..<chars.count {
+        if let index = result.firstIndex(of: chars[i]) {
+            result.removeSubrange(0...index)
         }
-        
-        if anagramMap == windowMap {
-            result.append(i - (tCount - 1))
-        }
-        
+        result.append(chars[i])
     }
-    return result
+    return String(result)
 }
 
-
-print(findAnagramInString("cbaebabacd", t: "abc"))
-
-
-
-
-
-
+print(longestSubstring("abcabcbbefg"))

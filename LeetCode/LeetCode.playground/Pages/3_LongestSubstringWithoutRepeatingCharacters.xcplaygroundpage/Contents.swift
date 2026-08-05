@@ -21,7 +21,7 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     return subRange
 }
 
-lengthOfLongestSubstring("abcabcbb")
+// lengthOfLongestSubstring("abcabcbb")
 
 func longestSubstringSoloution2(_ s: String) -> String {
   
@@ -39,7 +39,7 @@ func longestSubstringSoloution2(_ s: String) -> String {
     return result
 }
 
-longestSubstringSoloution2("pwwkew")
+// longestSubstringSoloution2("pwwkew")
 
 func longestSubstringSoloution3(_ s: String) -> String {
     
@@ -58,3 +58,33 @@ func longestSubstringSoloution3(_ s: String) -> String {
     }
     return result
 }
+
+func longestSubstringSlidingWindow(_ s: String) -> String {
+    
+    var chars = Array(s)
+    var left = 0
+    var seen: [Character: Int] = [:] // char -> last index
+    var maxLength = 0
+    var maxStart = 0
+    
+    for (right, char) in chars.enumerated() {
+        // If char was seen inside the current window, shrink from left
+        if let prev = seen[char], prev >= left {
+            left = prev + 1
+        }
+        
+        let currentLengh = right - left + 1
+        // Update max length and max start
+        if currentLengh > maxLength {
+            maxStart = left
+            maxLength = currentLengh
+        }
+        // Record current position of ch
+        seen[char] = right
+    }
+    
+    let subArray = chars[maxStart..<(maxStart + maxLength)]
+    return String(subArray)
+}
+
+print(longestSubstringSlidingWindow("pwwkew"))

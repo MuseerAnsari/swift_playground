@@ -26,3 +26,5 @@ func smallestSubarrayWithSumExceeding(_ nums: [Int], _ k: Int) -> Int {
 }
 
 print(smallestSubarrayWithSumExceeding([2, 3, 1, 2, 4, 3], 7))
+
+
