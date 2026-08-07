@@ -7,6 +7,7 @@
  Input: nums = [2,2,1]
  Output: 1
  */
+
 func singleNumber(_ nums: [Int]) -> Int {
     var map: [Int: Int] = [:]
     for num in nums {
@@ -14,4 +15,17 @@ func singleNumber(_ nums: [Int]) -> Int {
     }
     return map.first(where: {$0.value == 1})?.key ?? 0
 }
+
 singleNumber([2,2,1])
+
+// https://www.youtube.com/watch?v=KNOw_goVGas
+func singleNumber2(_ nums: [Int]) -> Int {
+    
+    var single = 0
+    for num in nums {
+        single ^= num
+    }
+    return single
+}
+
+

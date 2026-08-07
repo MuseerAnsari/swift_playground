@@ -56,7 +56,7 @@ func solution(_ nums: [Int], _ target: Int) -> [Int] {
             let current = nums[mid]
             if current == target {
                 ans = mid
-                right = mid - 1
+                right = mid - 1 // Continue searching to check duplicata possibility on the left
             } else if current < target {
                 left = mid + 1
             } else {
@@ -76,7 +76,7 @@ func solution(_ nums: [Int], _ target: Int) -> [Int] {
             let current = nums[mid]
             if current == target {
                 ans = mid
-                left = mid + 1
+                left = mid + 1 // Continue searching to check duplicata possibility on the right
             } else if current < target {
                 left = mid + 1
             } else {
