@@ -64,3 +64,53 @@ func longestValidParentheses2(_ s: String) -> Int {
     }
     return maxLength
 }
+
+// https://www.youtube.com/watch?v=vURq_xYGr-k
+func longestValidParenthesis(_ s: String) -> Int {
+    
+    var open = 0
+    var close = 0
+    var maxLength = 0
+    var chars = Array(s)
+    
+    for char in chars {
+        if char == "(" {
+            open += 1
+        } else {
+            close += 1
+        }
+        
+        if open == close {
+            maxLength = max(maxLength, open * 2)
+        } else if close > open {
+            open = 0
+            close = 0
+        }
+    }
+  
+    open = 0
+    close = 0
+    
+    for char in chars.reversed() {
+        if char == "(" {
+            open += 1
+        } else {
+            close += 1
+        }
+        
+        if open == close {
+            maxLength = max(maxLength, open * 2)
+        } else if close < open {
+            open = 0
+            close = 0
+        }
+    }
+ 
+    return maxLength
+}
+
+
+
+
+
+
