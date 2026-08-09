@@ -13,7 +13,6 @@ import Foundation
 
 
 func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
-    
     let wordSet = Set(wordDict)
     let n = s.count
     var dp = [Bool](repeating: false, count: n + 1)
@@ -21,8 +20,9 @@ func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
     let chars = Array(s)
     for i in 1...n {
         for j in 0..<i {
-            print(chars[j..<i])
-            if dp[j] && wordSet.contains(String(chars[j..<i])) {
+            let currentWindow = String(chars[j..<i])
+            print(currentWindow)
+            if dp[j] && wordSet.contains(currentWindow) {
                 dp[i] = true
                 break
             }
@@ -30,7 +30,7 @@ func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
     }
     return dp[n]
 }
-// wordBreak("bb", ["a","b","bbb","bbbb"])
+print(wordBreak("bb", ["a","b","bbb","bbbb"]))
 
 // ********** Not passed in leecode compiler *****************
 func wordBreak2(_ s: String, _ wordDict: [String]) -> Bool {
@@ -55,3 +55,33 @@ func wordBreak2(_ s: String, _ wordDict: [String]) -> Bool {
     return false
 }
 // wordBreak2("bb", ["a","b","bbb","bbbb"])
+
+// https://www.youtube.com/watch?v=hK6Git1o42c
+func wordBreaks(_ s: String, _ wordDict: [String]) -> Bool {
+    
+    var n = s.count
+    var dp: [Bool] = [Bool](repeating: false, count: n + 1)
+    dp[0] = true
+    let chars = Array(s)
+    var wordSet = Set(wordDict)
+    var word = ""
+    let maxWindow = wordSet.map({$0.count}).max() ?? 0
+        
+    for i in 1...n {
+        var currentWindow = 1
+        while currentWindow <= maxWindow, i >= currentWindow {
+            let strWindow = String(chars[(i-currentWindow)..<i])
+            print(strWindow)
+            if wordSet.contains(strWindow), dp[i-currentWindow] {
+                dp[i] = true
+            }
+            currentWindow += 1
+        }
+    }
+    print(dp)
+    return dp[n]
+}
+
+print(wordBreaks("bb", ["a","b","bbb","bbbb"]))
+
+
