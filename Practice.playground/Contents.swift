@@ -1,30 +1,38 @@
 import Foundation
 
+// Reverse each word
 
-func longestRepetingCharRepleacement(_ s: String, _ k: Int) -> Int {
+func reverseWord(_ s: String) -> String {
     
-    var left = 0
-    var window: [Character: Int] = [:]
-    var maxFreq = 0
-    var maxWindowSize = 0
-    let chars = Array(s)
-    
-    for (right, char) in chars.enumerated() {
-        window[char, default: 0] += 1
-        maxFreq = max(maxFreq, window[char]!)
-        
-        let windowSize = right - left + 1
-        let replacementRequired = windowSize - maxFreq
-        
-        if replacementRequired > k {
-            window[chars[left], default: 0] -= 1
-            left += 1
+    var chars = Array(s)
+    var word = ""
+    var result = ""
+    for (i, char) in chars.enumerated() {
+        if char != " " {
+            word += String(char)
+        } else {
+            result += reverseWord(word)
+            result += " "
+            word = ""
         }
-        
-        maxWindowSize = max(maxWindowSize, (right - left + 1))
     }
-
-    return maxWindowSize
+    result += reverseWord(word)
+    
+    func reverseWord(_ w: String) -> String {
+        var chars = Array(w)
+        var left = 0
+        var right = chars.count - 1
+        while left < right {
+            chars.swapAt(left, right)
+            left += 1
+            right -= 1
+        }
+        return String(chars)
+    }
+    
+    return result
 }
 
-print(longestRepetingCharRepleacement("BABBA", 1))
+print(reverseWord("Reverse each word"))
+
+

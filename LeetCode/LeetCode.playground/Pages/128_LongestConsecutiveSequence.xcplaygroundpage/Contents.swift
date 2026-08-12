@@ -74,3 +74,36 @@ func solution(_ nums: [Int]) -> Int {
 }
 
 solution([1,0,1,2])
+
+// https://www.youtube.com/watch?v=LvbtUMdcgbw
+func solution2(_ nums: [Int]) -> Int {
+    
+    var visitedNums: [Int: Bool] = [:]
+    var maxLength = 0
+    for num in nums {
+        visitedNums[num] = false
+    }
+
+    for num in nums {
+        var currentLength = 1
+        // check in forword direction
+        var nextNum = num + 1
+        while let visited = visitedNums[nextNum], visited == false {
+            visitedNums[nextNum] = true
+            currentLength += 1
+            nextNum += 1
+        }
+        // check in backword direction
+        var preNum = num - 1
+        while let visited = visitedNums[preNum], visited == false {
+            visitedNums[preNum] = true
+            currentLength += 1
+            preNum -= 1
+        }
+        maxLength = max(maxLength, currentLength)
+    }
+    return maxLength
+}
+
+
+
