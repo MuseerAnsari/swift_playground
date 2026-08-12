@@ -1,17 +1,30 @@
 import Foundation
 
-func longestSubstring(_ s: String) -> String {
+
+func longestRepetingCharRepleacement(_ s: String, _ k: Int) -> Int {
     
+    var left = 0
+    var window: [Character: Int] = [:]
+    var maxFreq = 0
+    var maxWindowSize = 0
     let chars = Array(s)
-    var result: [Character] = []
     
-    for i in 0..<chars.count {
-        if let index = result.firstIndex(of: chars[i]) {
-            result.removeSubrange(0...index)
+    for (right, char) in chars.enumerated() {
+        window[char, default: 0] += 1
+        maxFreq = max(maxFreq, window[char]!)
+        
+        let windowSize = right - left + 1
+        let replacementRequired = windowSize - maxFreq
+        
+        if replacementRequired > k {
+            window[chars[left], default: 0] -= 1
+            left += 1
         }
-        result.append(chars[i])
+        
+        maxWindowSize = max(maxWindowSize, (right - left + 1))
     }
-    return String(result)
+
+    return maxWindowSize
 }
 
-print(longestSubstring("abcabcbbefg"))
+print(longestRepetingCharRepleacement("BABBA", 1))

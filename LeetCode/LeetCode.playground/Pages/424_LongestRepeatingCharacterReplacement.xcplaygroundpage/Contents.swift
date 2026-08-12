@@ -14,26 +14,30 @@
 func characterReplacement(_ s: String, _ k: Int) -> Int {
     
     var chars = Array(s)
-    var count = [Character: Int]()
+    var window = [Character: Int]()
     var left = 0
-    var maxCount = 0
-    var result = 0
-    
+    var maxFrequency = 0
+    var maxWindowSize = 0
     
     for right in 0..<chars.count {
-        count[chars[right], default: 0] += 1
-        maxCount = max(maxCount, count[chars[right]]!)
-        print(count)
+        window[chars[right], default: 0] += 1
+        maxFrequency = max(maxFrequency, window[chars[right]]!)
         // If the window size minus the number of the most frequent char > k,
         // shrink the window
-        while (right - left + 1) - maxCount > k {
-            count[chars[left]]! -= 1
+        let cuurrentWindow = right - left + 1
+        let replacementRequired = cuurrentWindow - maxFrequency
+        
+        if replacementRequired > k {
+            let leftChar = chars[left]
+            window[leftChar]! -= 1
             left += 1
         }
-        result = max(result, right - left + 1)
+        
+        let  finalValidWindow = right - left + 1
+        maxWindowSize = max(maxWindowSize, finalValidWindow)
     }
     
-    return result
+    return maxWindowSize
 }
 
 characterReplacement("AABABBA", 1)
