@@ -1,38 +1,30 @@
 import Foundation
 
-// Reverse each word
 
-func reverseWord(_ s: String) -> String {
+func mergeSortedArrays(_ arr1: [Int], _ arr2: [Int]) -> [Int] {
+    //TODO: Implement your solution here
     
-    var chars = Array(s)
-    var word = ""
-    var result = ""
-    for (i, char) in chars.enumerated() {
-        if char != " " {
-            word += String(char)
+    var (i, j) = (0, 0)
+    var result: [Int] = []
+    
+    while i < arr1.count && j < arr2.count {
+        
+        let a = arr1[i]
+        let b = arr2[j]
+        
+        if a <= b {
+            result.append(a)
+            i += 1
         } else {
-            result += reverseWord(word)
-            result += " "
-            word = ""
+            result.append(b)
+            j += 1
         }
     }
-    result += reverseWord(word)
     
-    func reverseWord(_ w: String) -> String {
-        var chars = Array(w)
-        var left = 0
-        var right = chars.count - 1
-        while left < right {
-            chars.swapAt(left, right)
-            left += 1
-            right -= 1
-        }
-        return String(chars)
-    }
+    result.append(contentsOf: arr2[j...])
+    result.append(contentsOf: arr1[i...])
     
     return result
 }
 
-print(reverseWord("Reverse each word"))
-
-
+print(mergeSortedArrays([1,3,5], [2,4,6]) )
