@@ -10,6 +10,7 @@
  Input: s = "3+2*2"
  Output: 7
  */
+import Foundation
 
 func calculate(_ s: String) -> Int {
     
@@ -44,36 +45,40 @@ func calculate(_ s: String) -> Int {
     }
     return result
 }
+//calculate("3+5*2")
 
+// https://www.youtube.com/watch?v=b_vCkD-rhiU&t=791s
 
-calculate("3+5*2")
-
-
-//    func calculate(_ s: String) -> Int {
-//        var num = 0
-//        var stack = [Int]()
-//        var op = "+"
-//
-//        for char in s+"+" where char != " " {
-//            if let number = char.wholeNumberValue {
-//                num = num * 10 + number
-//            } else {
-//                // handle + - * /
-//                switch op {
-//                    case "+":
-//                    stack.append(num)
-//                    case "-":
-//                    stack.append(-num)
-//                    case "*":
-//                    stack.append(stack.removeLast() * num)
-//                    case "/":
-//                    stack.append(stack.removeLast() / num)
-//                   default: break
-//                }
-//                num = 0
-//                op = String(char)
-//            }
-//        }
-//        return stack.reduce(0, +)
-//    }
-
+func solution(_ s: String) -> Int {
+    
+    var prevOprtr: Character = "+"
+    var num = 0
+    var stack:[Int] = []
+    
+    // Added "+" to string so that we can iterate up to last digit
+    for char in s.replacingOccurrences(of: " ", with: "") + "+" {
+        
+        if let digit = char.wholeNumberValue {
+            num = num * 10 + digit
+        } else {
+            // will get num if any oprator observe in loop
+            switch prevOprtr {
+            case "+":
+                stack.append(num)
+            case "-":
+                stack.append(-num)
+            case "*":
+                stack.append(stack.removeLast() * num)
+            case "/":
+                stack.append(stack.removeLast() / num)
+            default:
+                ()
+            }
+            num = 0
+            prevOprtr = char
+        }
+    }
+    
+    return stack.reduce(0, +)
+}
+print(solution("0-2147483647"))

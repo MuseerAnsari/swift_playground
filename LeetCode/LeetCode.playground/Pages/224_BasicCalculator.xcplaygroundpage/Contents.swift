@@ -42,3 +42,45 @@ func calculate(_ s: String) -> Int {
     
 }
 calculate("10 - (1 + 12) - 3")
+
+
+func solution(_ s: String) -> Int {
+   
+    var partialReuslt = 0
+    var sign = 1
+    var num = 0
+    var stack: [Int] = []
+    
+    for char in s + "+" where s != " " {
+        
+        if let digit = char.wholeNumberValue {
+            num = num * 10 + digit
+        } else {
+            
+            if char == "-" {
+                partialReuslt += num * sign
+                sign = -1
+                num = 0
+            } else if char == "+" {
+                partialReuslt += num * sign
+                sign = 1
+                num = 0
+            } else if char == "(" {
+                stack.append(partialReuslt)
+                stack.append(sign)
+                partialReuslt = 0
+                sign = 1
+            } else if char == ")" {
+                let prevSing = stack.removeLast()
+                let prevResult = stack.removeLast()
+                partialReuslt += num * sign
+                partialReuslt *= prevSing // bcs we are storing sign for brackets
+                partialReuslt += prevResult
+                num = 0
+            }
+        }
+    }
+
+    return partialReuslt
+}
+print(solution("10 - (-1 + 12) - 3"))
