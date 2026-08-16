@@ -19,41 +19,39 @@ public class ListNode {
     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
 }
 
-class Solution {
-    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-      
-        var l1 = l1
-        var l2 = l2
-        var carry = 0
+func addTwoNums(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    
+    var l1Pointer = l1
+    var l2Pointer = l2
+    
+    let result = ListNode(0)
+    var resultPointer: ListNode? = result
+    var carry = 0
+    
+    
+    while l1Pointer != nil || l2Pointer != nil {
         
-        let result = ListNode(0)
-        var pointer: ListNode? = result
+        var sum = carry
         
-        while l1 != nil || l2 != nil {
-            
-            var sum = 0 + carry
-            
-            if let l1Val = l1?.val {
-                sum += l1Val
-                l1 = l1?.next
-            }
-            
-            if let l2Val = l2?.val {
-                sum += l2Val
-                l2 = l2?.next
-            }
-            
-            carry = sum / 10
-            let num = sum % 10
-        
-            pointer?.next = ListNode(num)
-            pointer = pointer?.next
+        if let a = l1Pointer?.val {
+            sum += a
+            l1Pointer = l1Pointer?.next
         }
         
-        if carry == 1 {
-            pointer?.next = ListNode(carry)
+        if let b = l2Pointer?.val {
+            sum += b
+            l2Pointer = l2Pointer?.next
         }
         
-        return result.next
+        let digit = sum % 10
+        carry = sum / 10
+        resultPointer?.next = ListNode(digit)
+        resultPointer = resultPointer?.next
     }
+    
+    if carry > 0 {
+        resultPointer?.next = ListNode(carry)
+    }
+    
+    return result.next
 }
