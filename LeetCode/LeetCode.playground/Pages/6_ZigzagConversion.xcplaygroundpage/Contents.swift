@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/zigzag-conversion/description/
 /*
  The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
  P   A   H   N
@@ -5,6 +6,11 @@
  Y   I   R
  And then read line by line: "PAHNAPLSIIGYIR"
  Write the code that will take a string and make this conversion given a number of rows:
+ 
+ Example 1:
+ Input: s = "PAYPALISHIRING", numRows = 3
+ Output: "PAHNAPLSIIGYIR"
+ 
  */
 
 func convert(_ s: String, _ numRows: Int) -> String {
@@ -30,6 +36,26 @@ func convert(_ s: String, _ numRows: Int) -> String {
     }
     return arryOfString.joined()
 }
+// convert("PAYPALISHIRING", 2)
 
-convert("PAYPALISHIRING", 2)
+func solution(_ s: String, _ numRows: Int) -> String {
+    
+    var dp: [[Character]] = [[Character]](repeating: [], count: numRows)
+    var isTraversingDown = true
+    var index = 0
+    
+    for char in s {
+        dp[index].append(char)
+        if index == 0 {
+            isTraversingDown = true
+        }
+        if index == numRows - 1 {
+            isTraversingDown = false
+        }
+        index = isTraversingDown ? (index + 1) : (index - 1)
+    }
+    let result = dp.compactMap({String($0)}).reduce("", +)
+    return result
+}
+print(solution("PAYPALISHIRING", 3))
 

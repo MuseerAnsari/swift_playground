@@ -1,7 +1,6 @@
-// https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=problem-list-v2&envId=string
-// Given a string s, find the length of the longest substring without duplicate characters.
-
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 /*
+ Given a string s, find the length of the longest substring without duplicate characters.
  Example 1:
  Input: s = "abcabcbb"
  Output: 3
@@ -12,7 +11,7 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     var chars: [Character] = []
     var subRange = 0
     for char in s {
-        if let index = chars.firstIndex(where: {$0 == char}) {
+        if let index = chars.firstIndex(of: char) {
             chars.removeSubrange(0...index)
         }
         chars.append(char)
@@ -20,7 +19,6 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     }
     return subRange
 }
-
 // lengthOfLongestSubstring("abcabcbb")
 
 func longestSubstringSoloution2(_ s: String) -> String {
@@ -38,27 +36,9 @@ func longestSubstringSoloution2(_ s: String) -> String {
     }
     return result
 }
-
 // longestSubstringSoloution2("pwwkew")
 
-func longestSubstringSoloution3(_ s: String) -> String {
-    
-    var result = ""
-    var subString = ""
-    
-    for char in s {
-        if subString.contains(where: {$0 == char}) {
-            if subString.count > result.count {
-                result = subString
-                subString = String(char)
-            }
-        } else {
-            subString.append(char)
-        }
-    }
-    return result
-}
-
+// https://www.youtube.com/watch?v=U2ppEzBaMck&t=807s
 func longestSubstringSlidingWindow(_ s: String) -> String {
     
     var chars = Array(s)
@@ -86,5 +66,4 @@ func longestSubstringSlidingWindow(_ s: String) -> String {
     let subArray = chars[maxStart..<(maxStart + maxLength)]
     return String(subArray)
 }
-
 print(longestSubstringSlidingWindow("pwwkew"))

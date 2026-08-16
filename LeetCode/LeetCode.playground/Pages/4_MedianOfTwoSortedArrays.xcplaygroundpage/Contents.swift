@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/median-of-two-sorted-arrays/description/
 /*
  Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays without using inbuild sorted function.
  The overall run time complexity should be O(log (m+n)).
@@ -26,8 +27,7 @@ func medianOfSortedArray(_ a1: [Int], _ a2: [Int]) -> Double {
     
     return result
 }
-
-medianOfSortedArray([4,5,6,14],[2,12,13])
+// medianOfSortedArray([4,5,6,14],[2,12,13])
 
 func medianOfSortedArraySolution2(_ a1: [Int], _ a2: [Int]) -> Double {
     let mergedArray = a1 + a2
@@ -36,8 +36,7 @@ func medianOfSortedArraySolution2(_ a1: [Int], _ a2: [Int]) -> Double {
     let result = Double(sortedArray[(count - 1) / 2] + sortedArray[count / 2]) * 0.5
     return result
 }
-
-medianOfSortedArraySolution2([4,5,6,14],[2,12,13])
+// medianOfSortedArraySolution2([4,5,6,14],[2,12,13])
 
 func medianOfSortedArraySolution3(_ a1: [Int], _ a2: [Int]) -> Double {
     
@@ -60,5 +59,4 @@ func medianOfSortedArraySolution3(_ a1: [Int], _ a2: [Int]) -> Double {
     let median = array[(arrayCount - 1) / 2] + array[arrayCount / 2]
     return Double(median) * 0.5
 }
-
-medianOfSortedArraySolution3([4,5,6,14],[2,12,13])
+// medianOfSortedArraySolution3([4,5,6,14],[2,12,13])
