@@ -9,32 +9,6 @@
  */
 
 func longestValidParentheses(_ s: String) -> Int {
-    
-    var stack: [Int] = [-1]
-    var maxLength = 0
-    
-    for (index, char) in s.enumerated() {
-        
-        if char == "(" {
-            stack.append(index)
-        } else {
-            // Remove last index from stack to keep track diffrences in * 2
-            stack.removeLast()
-            // if stack in not empty
-            if let last = stack.last {
-                maxLength = max(maxLength, index - last)
-            } else {
-                stack.append(index)
-            }
-        }
-    }
-    return maxLength
-}
-
-longestValidParentheses("))(()   )))((((()))))")
-
-
-func longestValidParentheses2(_ s: String) -> Int {
     var array = Array(s)
     var maxLength = 0
     // We start with -1 as a base marker for length calculation.
@@ -64,6 +38,7 @@ func longestValidParentheses2(_ s: String) -> Int {
     }
     return maxLength
 }
+longestValidParentheses("))(()   )))((((()))))")
 
 // https://www.youtube.com/watch?v=vURq_xYGr-k
 func longestValidParenthesis(_ s: String) -> Int {

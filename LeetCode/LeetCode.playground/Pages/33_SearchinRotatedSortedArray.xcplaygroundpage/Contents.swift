@@ -14,6 +14,7 @@
  Output: -1
  */
 
+// https://www.youtube.com/watch?v=6WNZQBHWQJs
 func serchInRotatedArray(_ nums: [Int], _ target: Int) -> Int {
     
     var left = 0
@@ -46,4 +47,5 @@ func serchInRotatedArray(_ nums: [Int], _ target: Int) -> Int {
     return -1
 }
 
+print(serchInRotatedArray([4,5,6,7,0,1,2], 0))
 

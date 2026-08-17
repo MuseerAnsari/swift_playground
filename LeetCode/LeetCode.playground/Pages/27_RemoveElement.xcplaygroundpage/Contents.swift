@@ -9,23 +9,15 @@
  It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-func removeElement(_ nums: inout [Int], _ value: Int) -> Int {
-    
-    var unmatchedIndex = 0 // where the value is not equal to target
-    
-//    for num in nums {
-//        if num != value {
-//            nums[unmatchedIndex] = num
-//            unmatchedIndex += 1
-//        }
-//    }
-    
-    for num in nums where num != value {
-        nums[unmatchedIndex] = num
-        unmatchedIndex += 1
+func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+    var left = 0
+    for right in 0..<nums.count {
+        if nums[right] != val {
+            nums.swapAt(left, right)
+            left += 1
+        }
     }
-    
-    return unmatchedIndex
+    return left
 }
 
 func removeElements2(_ nums: inout [Int], val: Int) -> ([Int], Int) {

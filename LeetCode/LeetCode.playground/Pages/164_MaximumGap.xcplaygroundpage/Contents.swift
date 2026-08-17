@@ -12,7 +12,7 @@
 
 func maximumGap(_ nums: [Int]) -> Int {
     
-    guard nums.count > 1 else { return 0}
+    guard nums.count > 1 else { return 0 }
     let sorted = nums.sorted()
     var maxDifference = Int.min
     

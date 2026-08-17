@@ -39,4 +39,4 @@ func solution(_ s: String) -> Bool {
     return stack.isEmpty
 }
 
-solution("([]{e})")
+solution("([]{})")

@@ -37,6 +37,7 @@ let node1 = ListNode(2)
 let list = ListNode(1, node1)
 mergeTwoLists(list, nil)
 
+// https://www.youtube.com/watch?v=0ougDTvVOFI
 func mergeTwoLists2(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
     
     var l1 = list1

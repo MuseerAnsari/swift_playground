@@ -13,64 +13,17 @@
  It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-func removeDuplicateFromArray(_ nums: [Int]) -> ([Int], Int) {
+// https://www.youtube.com/watch?v=06ALbFrgIoQ
+func removeDuplicates(_ nums: inout [Int]) -> Int {
     
-    guard let first = nums.first else { return ([], 0) }
-    guard nums.count > 1 else { return ([first], 1) }
+    guard nums.count > 0 else { return 0 }
     
-    var result: [Int] = [Int](repeating: 0, count: nums.count)
-    var count = 0
-    
-    for num in nums {
-        if !result.contains(num) {
-            result[count] = num
-            count += 1
+    var left = 0
+    for right in 0..<nums.count {
+        if nums[left] != nums[right] {
+            left += 1
+            nums.swapAt(left, right)
         }
     }
-    return (result, count)
+    return left + 1
 }
-
-removeDuplicateFromArray([0,0,1,1,1,2,2,3,3,4])
-
-
-func solution2(_ nums: [Int]) -> ([Int], Int) {
-    
-    guard let first = nums.first else { return ([], 0) }
-    guard nums.count > 1 else { return ([first], 1) }
-    
-    var currenNumber = 0
-    var result: [Int] = [Int](repeating: 1, count: nums.count)
-    var count = 0
-    
-    for num in nums {
-        if currenNumber != num {
-            currenNumber = num
-            result[count] = num
-            count += 1
-        }
-    }
-    return (result, count)
-}
-
-solution2([0,0,1,1,1,2,2,3,3,4])
-
-func solution3(_ nums: inout [Int]) -> ([Int], Int) {
-    
-    guard let first = nums.first else { return ([], 0) }
-    guard nums.count > 1 else { return ([first], 1) }
-    
-    var currenNumber = 0
-    var count = 0
-    
-    for num in nums {
-        if currenNumber != num {
-            currenNumber = num
-            nums[count] = num
-            count += 1
-        }
-    }
-    return (nums, count)
-}
-
-var nums = [0,0,1,1,1,2,2,3,3,4]
-solution3(&nums)

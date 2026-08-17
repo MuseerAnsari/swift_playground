@@ -13,7 +13,7 @@
  Explanation: The original array was [1,2,3,4,5] rotated 3 times.
  */
 
-
+// https://www.youtube.com/watch?v=bkJeA7LnJww
 func findMin(_ nums: [Int]) -> Int {
 
     var left = 0
