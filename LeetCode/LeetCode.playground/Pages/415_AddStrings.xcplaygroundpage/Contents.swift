@@ -45,9 +45,6 @@ func addStrings(_ num1: String, _ num2: String) -> String {
     return result
 }
 
-
-
-
 func addStrings2(_ num1: String, _ num2: String) -> String {
     
     let numA = Int(num1) ?? 0
