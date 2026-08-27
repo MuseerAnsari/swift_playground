@@ -39,4 +39,37 @@ func solution(_ s: String) -> [String: [Int]] {
     return map
 }
 
-print(solution("iahefu14:45oseg38jhsgo-4:35kljsdg14:78ksdgieval"))
+//print(solution("iahefu14:45oseg38jhsgo-4:35kljsdg14:78ksdgieval"))
+
+func solution2(_ s: String) -> [String: [Int]] {
+    
+    var key = ""
+    var value = ""
+    var isKeyAppear = false
+    var map: [String: [Int]] = [:]
+    
+    for char in s {
+        if char == ":" {
+            isKeyAppear = true
+        }
+        else if !char.isNumber && char != "-" {
+            if !key.isEmpty && !value.isEmpty {
+                let intValue = Int(value) ?? 0
+                map[key, default: []].append(intValue)
+                key = ""
+                value = ""
+                isKeyAppear = false
+            } else {
+                key = ""
+            }
+        } else if (char.isNumber || char == "-" ) && !isKeyAppear {
+            key += String(char)
+        } else {
+            value += String(char)
+        }
+    }
+    
+    return map
+}
+
+print(solution2("iahefu14:45oseg38jhsgo-4:35kljsdg14:78ksdgieval"))

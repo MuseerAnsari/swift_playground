@@ -33,7 +33,7 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
     }
     return minCoinsDP[amount] == unreachable ? -1 : minCoinsDP[amount]
 }
-print(coinChange([1], 0))
+//print(coinChange([1], 0))
 
 func coinChange2(_ coins: [Int], _ amount: Int) -> Int {
     
@@ -54,3 +54,31 @@ func coinChange2(_ coins: [Int], _ amount: Int) -> Int {
     
     return minCoinsDP[amount] == unreachable ? -1 : minCoinsDP[amount]
 }
+
+func coinChange3(_ coins: [Int], _ amount: Int) -> Int {
+        
+    let unreachable = amount + 1
+    var memo: [Int : Int] = [:]
+    
+    func recursion(_ remaining: Int) -> Int {
+        if remaining == 0 { return 0 }
+        if remaining < 0 { return unreachable }
+        if let chach = memo[remaining] { return chach }
+        
+        var best = unreachable
+        
+        for coin in coins {
+            let sub = recursion(remaining - coin)
+            if sub != unreachable {
+                best = min(best, sub + 1)
+            }
+        }
+        memo[remaining] = best
+        return best
+    }
+    
+    let ans = recursion(amount)
+    return ans == unreachable ? -1 : ans
+}
+
+print(coinChange3([1,2,5], 11))
