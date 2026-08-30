@@ -25,6 +25,7 @@ func maxSubArray(_ nums: [Int]) -> Int {
     for i in 1..<nums.count {
         currentSum = currentSum + nums[i]
         maxSum = max(maxSum, currentSum)
+        //Kadanes Algorithm
         if currentSum < 0 {
             currentSum = 0
         }
